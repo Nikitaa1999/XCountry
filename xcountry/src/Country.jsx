@@ -9,23 +9,22 @@ const Country=()=>{
   const [selectedCity, setSelectedCity] = useState('');
 
   useEffect(() => {
-    try{
+    
     fetch('https://crio-location-selector.onrender.com/countries')
       .then(response => response.json())
       .then(data => { setCountries(data)
         // setSelectedState('');
         // setSelectedCity('');
-      });
-    }
-    catch(err){
+      }).catch((err)=>{
       console.log("error in 1st-",err);
-    }
+      })
+    
   }, []);
  // console.log(countries);
 
   useEffect(() => {
     if (selectedCountry ) {
-      try{
+      
         console.log("selectedCountry===>",selectedCountry);
       fetch(`https://crio-location-selector.onrender.com/country=${selectedCountry}/states`)
         .then(response => response.json())
@@ -34,29 +33,28 @@ const Country=()=>{
           setSelectedState("");
           setCities([]);  
           setSelectedCity("");
-        });
-
-       
-      }
-      catch(err){
+        })      
+      
+      .catch((err)=>{
         console.log("error  in 2nd-",err);
-      }
+      })
+      
     }
   }, [selectedCountry]);
 
   useEffect(() => {
     if (selectedCountry && selectedState ) {
 
-      try{
+      
       fetch(`https://crio-location-selector.onrender.com/country=${selectedCountry}/state=${selectedState}/cities`)
         .then(response => response.json())
         .then(data => {setCities(data)   
           setSelectedCity("");
-          } );
-        }
-        catch(err ){
+          } )
+        
+        .catch((err )=>{
           console.log("error in 3rd-",err)
-        }
+        })
        
     }
   }, [selectedCountry, selectedState]);
