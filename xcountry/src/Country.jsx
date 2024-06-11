@@ -113,7 +113,7 @@ const Country=()=>{
 
       {selectedCountry && selectedCity && selectedState ?
        <div>
-          <p>You selected {selectedCountry}, {selectedState}, {selectedCity} </p>
+          <p>You selected {selectedCity}, {selectedState}, {selectedCountry} </p>
       </div>
       :<></>}
   </div>
